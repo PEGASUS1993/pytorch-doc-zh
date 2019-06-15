@@ -1,8 +1,6 @@
-
-
-
 # 扩展PyTorch
 
+> 译者：[PEGASUS1993](https://github.com/PEGASUS1993)
 
 本章中，将要介绍使用我们的C库如何扩展`torch.nn`，`torch.autograd`和编写自定义的`C`扩展工具。
 
@@ -12,7 +10,7 @@
 
 *   `forward()` - 执行操作的代码。如果您指定了默认值，则可以根据需求使用任意参数，其中一些参数可选。这里支持各种`Python`对象。`Variable`参数在调用之前会被转换`Tensor`，并且它们的使用情况将在`graph`中注册。请注意，此逻辑不会遍历`lists`/`dicts`/和其他任何数据的结构，并且只考虑被直接调用的`Variables`参数。如果有多个输出你可以返回单个`Tensor`或`Tensor`格式的元组。另外，请参阅`Function`文档查找只能被`forward()`调用的有用方法的说明。
 
-*   `backward()` - 计算梯度的公式. 它将被赋予与输出一样多的`Variable`参数, 其中的每一个表示对应梯度的输出. 它应该返回与输入一样多的`Variable`, 其中的每一个表示都包含其相应输入的梯度. 如果输入不需要计算梯度 (请参阅`needs_input_grad`属性),`或者是非`Variable`对象,则可返回`None`类.此外,如果你在`forward()`方法中有可选的参数,`则可以返回比输入更多的梯度,只要它们都是`None`类型即可.
+*   `backward()` - 计算梯度的公式. 它将被赋予与输出一样多的`Variable`参数, 其中的每一个表示对应梯度的输出. 它应该返回与输入一样多的`Variable`, 其中的每一个表示都包含其相应输入的梯度. 如果输入不需要计算梯度 (请参阅`needs_input_grad`属性),或者是非`Variable`对象,则可返回`None`类.此外,如果你在`forward()`方法中有可选的参数,则可以返回比输入更多的梯度,只要它们都是`None`类型即可.
 
 你可以从下面的代码看到`torch.nn`模块的`Linear`函数, 以及注解
 
@@ -151,9 +149,7 @@ class Linear(nn.Module):
 ### 编写自定义的C++扩展  
 
 有关详细说明和示例，请参阅此[PyTorch教程](https://pytorch.org/tutorials/advanced/cpp_extension.html)。
-文档可在t[orch.utils.cpp_extension](../cpp_extension.html).获得。
+文档可在[torch.utils.cpp_extension](../cpp_extension.html).获得。
 ### 编写自定义的C扩展
 
 可用示例可以在[这个Github](https://github.com/pytorch/extension-ffi)仓库里面查看参考。
-
-
